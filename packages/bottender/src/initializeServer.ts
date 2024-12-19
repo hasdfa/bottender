@@ -14,6 +14,7 @@ import WhatsappBot from './whatsapp/WhatsappBot';
 import getBottenderConfig from './shared/getBottenderConfig';
 import getSessionStore from './shared/getSessionStore';
 import { Action, BottenderConfig, Channel, Plugin } from './types';
+import { ServerOptions } from './server/Server';
 
 const BOT_MAP = {
   messenger: MessengerBot,
@@ -27,23 +28,27 @@ const BOT_MAP = {
 function initializeServer({
   isConsole,
   config,
+  serverOptions,
 }: {
   isConsole?: boolean;
   config?: BottenderConfig;
+  serverOptions?: ServerOptions;
 } = {}): express.Application | void {
-  const bottenderConfig = getBottenderConfig();
+  const bottenderConfig = getBottenderConfig(serverOptions);
 
   const { initialState, plugins, channels } = merge(bottenderConfig, config);
 
-  const sessionStore = getSessionStore();
+  const sessionStore = getSessionStore(serverOptions);
 
   // TODO: refine handler entry, improve error message and hint
-  // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-var-requires
-  const Entry: Action<any, any> = require(path.resolve('index.js'));
+  const Entry: Action<any, any> =
+    // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-var-requires
+    serverOptions?.Entry || require(path.resolve('index.js'));
   let ErrorEntry: Action<any, any>;
   try {
-    // eslint-disable-next-line import/no-dynamic-require
-    ErrorEntry = require(path.resolve('_error.js'));
+    ErrorEntry =
+      // eslint-disable-next-line import/no-dynamic-require
+      serverOptions?.ErrorEntry || require(path.resolve('_error.js'));
   } catch (err) {} // eslint-disable-line no-empty
 
   function initializeBot(bot: Bot<any, any, any, any>): void {

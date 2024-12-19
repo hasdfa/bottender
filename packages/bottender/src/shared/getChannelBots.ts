@@ -6,12 +6,15 @@ import { pascalcase } from 'messaging-api-common';
 
 import {
   Action,
+  AvailableChannels,
+  AvailableChannelsType,
   Bot,
   BottenderConfig,
   ChannelBot,
   Plugin,
   getSessionStore,
 } from '..';
+import { ServerOptions } from '../server/Server';
 
 import getBottenderConfig from './getBottenderConfig';
 
@@ -21,12 +24,12 @@ export function cleanChannelBots(): void {
   channelBots = [];
 }
 
-function getChannelBots(): ChannelBot[] {
+function getChannelBots(options?: ServerOptions): ChannelBot[] {
   if (channelBots.length > 0) {
     return channelBots;
   }
 
-  const bottenderConfig = getBottenderConfig();
+  const bottenderConfig = getBottenderConfig(options);
 
   const {
     initialState,
@@ -34,15 +37,16 @@ function getChannelBots(): ChannelBot[] {
     channels = {},
   } = merge(bottenderConfig /* , config */) as BottenderConfig;
 
-  const sessionStore = getSessionStore();
+  const sessionStore = getSessionStore(options);
 
   // TODO: refine handler entry, improve error message and hint
-  // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-var-requires
-  const Entry: Action<any, any> = require(path.resolve('index.js'));
+  const Entry: Action<any, any> =
+    // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-var-requires
+    options?.Entry || require(path.resolve('index.js'));
   let ErrorEntry: Action<any, any>;
   try {
     // eslint-disable-next-line import/no-dynamic-require
-    ErrorEntry = require(path.resolve('_error.js'));
+    ErrorEntry = options?.ErrorEntry || require(path.resolve('_error.js'));
   } catch (err) {} // eslint-disable-line no-empty
 
   function initializeBot(bot: Bot<any, any, any, any>): void {
@@ -70,16 +74,7 @@ function getChannelBots(): ChannelBot[] {
         { path: webhookPath, sync, onRequest, connector, ...connectorConfig },
       ]) => {
         let channelConnector;
-        if (
-          [
-            'messenger',
-            'line',
-            'telegram',
-            'slack',
-            'viber',
-            'whatsapp',
-          ].includes(channel)
-        ) {
+        if (AvailableChannels.includes(channel as AvailableChannelsType)) {
           // eslint-disable-next-line import/no-dynamic-require
           const ChannelConnector = require(`../${channel}/${pascalcase(
             channel

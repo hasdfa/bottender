@@ -3,13 +3,17 @@ import get from 'lodash/get';
 import invariant from 'invariant';
 
 import { Channel } from '../types';
+import { ServerOptions } from '../server/Server';
 
 import getBottenderConfig from './getBottenderConfig';
 import getChannelSchema from './getChannelSchema';
 import { bold } from './log';
 
-const getChannelConfig = (channel: Channel): any | never => {
-  const config = getBottenderConfig();
+const getChannelConfig = (
+  channel: Channel,
+  options?: ServerOptions
+): any | never => {
+  const config = getBottenderConfig(options);
 
   const channelConfig = get(config, `channels.${channel}`);
 

@@ -38,6 +38,16 @@ export enum Channel {
   Whatsapp = 'whatsapp',
 }
 
+export type AvailableChannelsType =
+  | 'messenger'
+  | 'line'
+  | 'telegram'
+  | 'slack'
+  | 'viber'
+  | 'whatsapp';
+export const AvailableChannels: AvailableChannelsType[] =
+  Object.values(Channel);
+
 export enum SessionDriver {
   Memory = 'memory',
   File = 'file',
@@ -93,10 +103,7 @@ export type BottenderConfig = {
         whatsapp?: WhatsappConnectorOptions & ChannelCommonConfig;
       }
     | {
-        [key in Exclude<
-          string,
-          'messenger' | 'line' | 'telegram' | 'slack' | 'viber' | 'whatsapp'
-        >]?: {
+        [key in Exclude<string, AvailableChannelsType>]?: {
           connector: Connector<any, any>;
         } & ChannelCommonConfig;
       };

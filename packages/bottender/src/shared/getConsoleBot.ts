@@ -4,17 +4,18 @@ import { merge } from 'lodash';
 
 import ConsoleBot from '../console/ConsoleBot';
 import { Action, Bot, BottenderConfig, Plugin, getSessionStore } from '..';
+import { ServerOptions } from '../server/Server';
 
 import getBottenderConfig from './getBottenderConfig';
 
-function getConsoleBot(): ConsoleBot {
-  const bottenderConfig = getBottenderConfig();
+function getConsoleBot(options: ServerOptions): ConsoleBot {
+  const bottenderConfig = getBottenderConfig(options);
 
   const { initialState, plugins } = merge(
     bottenderConfig /* , config */
   ) as BottenderConfig;
 
-  const sessionStore = getSessionStore();
+  const sessionStore = getSessionStore(options);
 
   // TODO: refine handler entry, improve error message and hint
   // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-var-requires

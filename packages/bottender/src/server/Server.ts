@@ -2,17 +2,29 @@ import { IncomingMessage, ServerResponse } from 'http';
 
 import getChannelBotAndRequestContext from '../shared/getChannelBotAndRequestContext';
 import getConsoleBot from '../shared/getConsoleBot';
+import { Action, BottenderConfig } from '../types';
+import { Context } from '../browser';
+
+declare type Builder<C extends Context> = {
+  build: () => Action<C, any>;
+};
 
 export type ServerOptions = {
   useConsole?: boolean;
   dev?: boolean;
+  config?: BottenderConfig | undefined;
+  Entry?: Action<Context, any> | Builder<Context>;
+  ErrorEntry?: Action<Context, any> | Builder<Context>;
 };
 
 class Server {
   useConsole: boolean;
 
-  constructor({ useConsole = false } = {}) {
-    this.useConsole = useConsole;
+  options: ServerOptions;
+
+  constructor(options: ServerOptions = {}) {
+    this.useConsole = options?.useConsole || false;
+    this.options = options;
   }
 
   private handleRequest(
@@ -51,7 +63,7 @@ class Server {
 
   public async prepare(): Promise<void> {
     if (this.useConsole) {
-      const bot = getConsoleBot();
+      const bot = getConsoleBot(this.options);
       bot.createRuntime();
     }
   }
@@ -68,7 +80,7 @@ class Server {
       return;
     }
     const { channelBot, requestContext } =
-      getChannelBotAndRequestContext(req) || {};
+      getChannelBotAndRequestContext(req, this.options) || {};
     if (!channelBot || !requestContext) {
       return;
     }

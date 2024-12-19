@@ -5,10 +5,14 @@ import fromEntries from 'object.fromentries';
 import { match } from 'path-to-regexp';
 
 import { ChannelBot, RequestContext } from '..';
+import { ServerOptions } from '../server/Server';
 
 import getChannelBots from './getChannelBots';
 
-function getChannelBotAndRequestContext(req: IncomingMessage):
+function getChannelBotAndRequestContext(
+  req: IncomingMessage,
+  options?: ServerOptions
+):
   | {
       requestContext: RequestContext;
       channelBot: ChannelBot;
@@ -25,7 +29,7 @@ function getChannelBotAndRequestContext(req: IncomingMessage):
 
   const query = fromEntries(searchParams.entries());
 
-  const channelBots = getChannelBots();
+  const channelBots = getChannelBots(options);
   for (let i = 0; i < channelBots.length; i++) {
     const channelBot = channelBots[i];
     const matchPath = match<Record<string, string>>(channelBot.webhookPath);

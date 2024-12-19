@@ -1,11 +1,12 @@
 import warning from 'warning';
 
 import SessionStore from '../session/SessionStore';
+import { ServerOptions } from '../server/Server';
 
 import getBottenderConfig from './getBottenderConfig';
 
-function getSessionStore(): SessionStore {
-  const { session } = getBottenderConfig();
+function getSessionStore(options?: ServerOptions): SessionStore {
+  const { session } = getBottenderConfig(options);
 
   const sessionDriver = (session && session.driver) || 'memory';
 

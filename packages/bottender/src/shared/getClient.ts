@@ -11,7 +11,8 @@ import TelegramBot from '../telegram/TelegramBot';
 import TwilioClient from '../whatsapp/TwilioClient';
 import ViberBot from '../viber/ViberBot';
 import WhatsappBot from '../whatsapp/WhatsappBot';
-import { Channel } from '../types';
+import { AvailableChannelsType, Channel } from '../types';
+import { ServerOptions } from '../server/Server';
 
 import getBottenderConfig from './getBottenderConfig';
 import getSessionStore from './getSessionStore';
@@ -25,8 +26,9 @@ const BOT_MAP = {
   whatsapp: WhatsappBot,
 };
 
-function getClient<C extends string>(
-  channel: C
+function getClient<C extends AvailableChannelsType>(
+  channel: C,
+  options?: ServerOptions
 ): C extends 'messenger'
   ? MessengerClient
   : C extends 'line'
@@ -40,8 +42,8 @@ function getClient<C extends string>(
   : C extends 'whatsapp'
   ? TwilioClient
   : any {
-  const { channels = {} } = getBottenderConfig();
-  const sessionStore = getSessionStore();
+  const { channels = {} } = getBottenderConfig(options);
+  const sessionStore = getSessionStore(options);
 
   const channelConfig = (channels as Record<string, any>)[channel];
 
