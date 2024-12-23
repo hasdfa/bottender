@@ -6,11 +6,11 @@ import pProps from 'p-props';
 import warning from 'warning';
 import { JsonObject } from 'type-fest';
 import { SlackOAuthClient } from 'messaging-api-slack';
-import { camelcaseKeysDeep } from 'messaging-api-common';
 
 import Session from '../session/Session';
 import { Connector } from '../bot/Connector';
 import { RequestContext } from '../types';
+import { camelcaseKeysDeep } from '../utils';
 
 import SlackContext from './SlackContext';
 import SlackEvent from './SlackEvent';
@@ -45,7 +45,7 @@ export type SlackConnectorOptions =
   | ConnectorOptionsWithClient;
 
 export default class SlackConnector
-  implements Connector<SlackRequestBody, SlackOAuthClient>
+  implements Connector<SlackRequestBody, SlackOAuthClient, 'slack'>
 {
   _client: SlackOAuthClient;
 

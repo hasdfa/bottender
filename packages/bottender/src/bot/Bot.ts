@@ -4,7 +4,6 @@ import debug from 'debug';
 import invariant from 'invariant';
 import pMap from 'p-map';
 import { JsonObject } from 'type-fest';
-import { camelcaseKeysDeep } from 'messaging-api-common';
 
 import CacheBasedSessionStore from '../session/CacheBasedSessionStore';
 import Context from '../context/Context';
@@ -13,6 +12,7 @@ import Session from '../session/Session';
 import SessionStore from '../session/SessionStore';
 import { Action, Client, Plugin, Props, RequestContext } from '../types';
 import { Event } from '../context/Event';
+import { camelcaseKeysDeep } from '../utils';
 
 import { Connector } from './Connector';
 
@@ -72,13 +72,14 @@ export default class Bot<
   B extends JsonObject,
   C extends Client,
   E extends Event,
-  Ctx extends Context<C, E>
+  Ctx extends Context<C, E>,
+  P extends string = string
 > {
   _sessions: SessionStore;
 
   _initialized: boolean;
 
-  _connector: Connector<B, C>;
+  _connector: Connector<B, C, P>;
 
   _handler: Action<Ctx, any> | null;
 
@@ -100,7 +101,7 @@ export default class Bot<
     sync = false,
     onRequest,
   }: {
-    connector: Connector<B, C>;
+    connector: Connector<B, C, P>;
     sessionStore?: SessionStore;
     sync?: boolean;
     onRequest?: OnRequest;
@@ -115,7 +116,7 @@ export default class Bot<
     this._onRequest = onRequest;
   }
 
-  get connector(): Connector<B, C> {
+  get connector(): Connector<B, C, P> {
     return this._connector;
   }
 
@@ -204,11 +205,11 @@ export default class Bot<
           const { platform } = this._connector;
           const sessionKey = this._connector.getUniqueSessionKey(
             // TODO: deprecating passing request body in those connectors
-            ['telegram', 'slack', 'viber', 'whatsapp'].includes(
+            (['telegram', 'slack', 'viber', 'whatsapp'].includes(
               this._connector.platform
             )
               ? body
-              : event,
+              : event) as any,
             requestContext
           );
 
@@ -244,11 +245,11 @@ export default class Bot<
             await this._connector.updateSession(
               session,
               // TODO: deprecating passing request body in those connectors
-              ['telegram', 'slack', 'viber', 'whatsapp'].includes(
+              (['telegram', 'slack', 'viber', 'whatsapp'].includes(
                 this._connector.platform
               )
                 ? body
-                : event
+                : event) as any
             );
           }
 

@@ -55,7 +55,7 @@ export type LineConnectorOptions =
   | ConnectorOptionsWithClient;
 
 export default class LineConnector
-  implements Connector<LineRequestBody, LineClient>
+  implements Connector<LineRequestBody, LineClient, 'line'>
 {
   _client: LineClient | undefined;
 
@@ -163,21 +163,13 @@ export default class LineConnector
   }
 
   getUniqueSessionKey(
-    bodyOrEvent: LineRequestBody | LineEvent,
+    event: LineEvent,
     requestContext?: RequestContext
   ): string {
-    const rawEvent =
-      bodyOrEvent instanceof LineEvent
-        ? bodyOrEvent.rawEvent
-        : bodyOrEvent.events[0];
+    const rawEvent = event.rawEvent;
 
     let prefix = '';
     if (this._getSessionKeyPrefix) {
-      const event =
-        bodyOrEvent instanceof LineEvent
-          ? bodyOrEvent
-          : new LineEvent(rawEvent, { destination: bodyOrEvent.destination });
-
       prefix = this._getSessionKeyPrefix(event, requestContext);
     }
 
@@ -197,15 +189,8 @@ export default class LineConnector
     );
   }
 
-  async updateSession(
-    session: Session,
-    bodyOrEvent: LineRequestBody | LineEvent
-  ): Promise<void> {
-    const rawEvent =
-      bodyOrEvent instanceof LineEvent
-        ? bodyOrEvent.rawEvent
-        : bodyOrEvent.events[0];
-
+  async updateSession(session: Session, event: LineEvent): Promise<void> {
+    const rawEvent = event.rawEvent;
     const { source } = rawEvent;
 
     if (!session.type) {

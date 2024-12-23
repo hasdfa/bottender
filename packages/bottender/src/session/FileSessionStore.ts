@@ -84,7 +84,7 @@ export default class FileSessionStore implements SessionStore {
 
     sess.lastActivity = Date.now();
 
-    await new Promise((resolve, reject) => {
+    await new Promise<void>((resolve, reject) => {
       this._jfs.save(safeKey, sess, (err) => {
         if (err) {
           reject(err);
@@ -98,7 +98,7 @@ export default class FileSessionStore implements SessionStore {
   async destroy(key: string): Promise<void> {
     const safeKey = os.platform() === 'win32' ? key.replace(':', '@') : key;
 
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       this._jfs.delete(safeKey, (err) => {
         if (err) {
           reject(err);

@@ -6,11 +6,13 @@ import Bot, { OnRequest } from './bot/Bot';
 import Context from './context/Context';
 import SessionStore from './session/SessionStore';
 import { Connector } from './bot/Connector';
+import { Event } from './context/Event';
 import { LineConnectorOptions } from './line/LineConnector';
 import { MessengerConnectorOptions } from './messenger/MessengerConnector';
 import { SlackConnectorOptions } from './slack/SlackConnector';
 import { TelegramConnectorOptions } from './telegram/TelegramConnector';
 import { ViberConnectorOptions } from './viber/ViberConnector';
+import { WhatsappBusinessConnectorOptions } from './whatsapp-business/WhatsappBusinessConnector';
 import { WhatsappConnectorOptions } from './whatsapp/WhatsappConnector';
 
 export type Action<
@@ -36,6 +38,7 @@ export enum Channel {
   Telegram = 'telegram',
   Viber = 'viber',
   Whatsapp = 'whatsapp',
+  WhatsappBusiness = 'whatsapp-business',
 }
 
 export type AvailableChannelsType =
@@ -44,7 +47,9 @@ export type AvailableChannelsType =
   | 'telegram'
   | 'slack'
   | 'viber'
-  | 'whatsapp';
+  | 'whatsapp'
+  | 'whatsapp-business';
+
 export const AvailableChannels: AvailableChannelsType[] =
   Object.values(Channel);
 
@@ -101,6 +106,8 @@ export type BottenderConfig = {
         slack?: SlackConnectorOptions & ChannelCommonConfig;
         viber?: ViberConnectorOptions & ChannelCommonConfig;
         whatsapp?: WhatsappConnectorOptions & ChannelCommonConfig;
+        'whatsapp-business'?: WhatsappBusinessConnectorOptions &
+          ChannelCommonConfig;
       }
     | {
         [key in Exclude<string, AvailableChannelsType>]?: {
@@ -132,3 +139,20 @@ export type ChannelBot = {
   webhookPath: string;
   bot: Bot<any, any, any, any>;
 };
+
+type CamelCase<S extends string> = S extends `${infer Head}_${infer Tail}`
+  ? `${Head}${Capitalize<CamelCase<Tail>>}`
+  : S;
+
+export type DeepCamelCase<T> = T extends (infer U)[]
+  ? DeepCamelCase<U>[]
+  : T extends object
+  ? {
+      [K in keyof T as CamelCase<Extract<K, string>>]: DeepCamelCase<T[K]>;
+    }
+  : T;
+
+export type ContextType<
+  C extends Client = Client,
+  E extends Event = Event
+> = Context<C, E>;

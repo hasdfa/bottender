@@ -35,7 +35,7 @@ export type ViberConnectorOptions =
   | ConnectorOptionsWithClient;
 
 export default class ViberConnector
-  implements Connector<ViberRequestBody, ViberClient>
+  implements Connector<ViberRequestBody, ViberClient, 'viber'>
 {
   _accessToken: string;
 
