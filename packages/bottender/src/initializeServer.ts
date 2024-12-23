@@ -11,18 +11,20 @@ import SlackBot from './slack/SlackBot';
 import TelegramBot from './telegram/TelegramBot';
 import ViberBot from './viber/ViberBot';
 import WhatsappBot from './whatsapp/WhatsappBot';
+import WhatsappBusinessBot from './whatsapp-business/WhatsappBusinessBot';
 import getBottenderConfig from './shared/getBottenderConfig';
 import getSessionStore from './shared/getSessionStore';
 import { Action, BottenderConfig, Channel, Plugin } from './types';
 import { ServerOptions } from './server/Server';
 
 const BOT_MAP = {
-  messenger: MessengerBot,
-  line: LineBot,
-  slack: SlackBot,
-  telegram: TelegramBot,
-  viber: ViberBot,
-  whatsapp: WhatsappBot,
+  [Channel.Messenger]: MessengerBot,
+  [Channel.Line]: LineBot,
+  [Channel.Slack]: SlackBot,
+  [Channel.Telegram]: TelegramBot,
+  [Channel.Viber]: ViberBot,
+  [Channel.Whatsapp]: WhatsappBot,
+  [Channel.WhatsappBusiness]: WhatsappBusinessBot,
 };
 
 function initializeServer({

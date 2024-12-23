@@ -14,7 +14,8 @@ export default class MessengerBot extends Bot<
   MessengerRequestBody,
   MessengerClient,
   MessengerEvent,
-  MessengerContext
+  MessengerContext,
+  'messenger'
 > {
   constructor({
     sessionStore,

@@ -1,6 +1,5 @@
-import { camelcaseKeysDeep } from 'messaging-api-common';
-
 import { Event } from '../context/Event';
+import { camelcaseKeysDeep } from '../utils';
 
 import {
   EventAccountLinking,

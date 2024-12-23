@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "composite": true,
+    "skipLibCheck": true,
+    "noStrictGenericChecks": true,
+    "useUnknownInCatchVariables": false,
     "target": "es2016",
     "module": "commonjs",
     "moduleResolution": "node",

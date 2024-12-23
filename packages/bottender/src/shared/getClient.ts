@@ -6,11 +6,13 @@ import { ViberClient } from 'messaging-api-viber';
 
 import LineBot from '../line/LineBot';
 import MessengerBot from '../messenger/MessengerBot';
+import MetaClient from '../whatsapp-business/MetaClient';
 import SlackBot from '../slack/SlackBot';
 import TelegramBot from '../telegram/TelegramBot';
 import TwilioClient from '../whatsapp/TwilioClient';
 import ViberBot from '../viber/ViberBot';
 import WhatsappBot from '../whatsapp/WhatsappBot';
+import WhatsappBusinessBot from '../whatsapp-business/WhatsappBusinessBot';
 import { AvailableChannelsType, Channel } from '../types';
 import { ServerOptions } from '../server/Server';
 
@@ -18,29 +20,32 @@ import getBottenderConfig from './getBottenderConfig';
 import getSessionStore from './getSessionStore';
 
 const BOT_MAP = {
-  messenger: MessengerBot,
-  line: LineBot,
-  slack: SlackBot,
-  telegram: TelegramBot,
-  viber: ViberBot,
-  whatsapp: WhatsappBot,
+  [Channel.Messenger]: MessengerBot,
+  [Channel.Line]: LineBot,
+  [Channel.Slack]: SlackBot,
+  [Channel.Telegram]: TelegramBot,
+  [Channel.Viber]: ViberBot,
+  [Channel.Whatsapp]: WhatsappBot,
+  [Channel.WhatsappBusiness]: WhatsappBusinessBot,
 };
 
 function getClient<C extends AvailableChannelsType>(
   channel: C,
   options?: ServerOptions
-): C extends 'messenger'
+): C extends Channel.Messenger
   ? MessengerClient
-  : C extends 'line'
+  : C extends Channel.Line
   ? LineClient
-  : C extends 'slack'
+  : C extends Channel.Slack
   ? SlackOAuthClient
-  : C extends 'telegram'
+  : C extends Channel.Telegram
   ? TelegramClient
-  : C extends 'viber'
+  : C extends Channel.Viber
   ? ViberClient
-  : C extends 'whatsapp'
+  : C extends Channel.Whatsapp
   ? TwilioClient
+  : C extends Channel.WhatsappBusiness
+  ? MetaClient
   : any {
   const { channels = {} } = getBottenderConfig(options);
   const sessionStore = getSessionStore(options);

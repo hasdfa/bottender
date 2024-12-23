@@ -13,7 +13,8 @@ export default class SlackBot extends Bot<
   SlackRequestBody,
   SlackOAuthClient,
   SlackEvent,
-  SlackContext
+  SlackContext,
+  'slack'
 > {
   _accessToken: string;
 

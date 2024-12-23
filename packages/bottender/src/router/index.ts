@@ -7,6 +7,7 @@ import slack from '../slack/routes';
 import telegram from '../telegram/routes';
 import viber from '../viber/routes';
 import whatsapp from '../whatsapp/routes';
+import whatsappBusiness from '../whatsapp-business/routes';
 import { Action, Props } from '../types';
 
 type MatchPattern = string | Array<string> | RegExp;
@@ -202,4 +203,5 @@ export {
   telegram,
   viber,
   whatsapp,
+  whatsappBusiness,
 };

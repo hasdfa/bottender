@@ -13,7 +13,8 @@ export default class ConsoleBot extends Bot<
   ConsoleRawEvent,
   ConsoleClient,
   ConsoleEvent,
-  ConsoleContext
+  ConsoleContext,
+  string
 > {
   constructor({
     sessionStore,

@@ -4,6 +4,7 @@ import * as MessengerTypes from './messenger/MessengerTypes';
 import * as SlackTypes from './slack/SlackTypes';
 import * as TelegramTypes from './telegram/TelegramTypes';
 import * as ViberTypes from './viber/ViberTypes';
+import * as WhatsappBusinessTypes from './whatsapp-business/WhatsappBusinessTypes';
 import * as WhatsappTypes from './whatsapp/WhatsappTypes';
 
 export { bottender };
@@ -58,6 +59,13 @@ export { default as WhatsappEvent } from './whatsapp/WhatsappEvent';
 export { default as TwilioClient } from './whatsapp/TwilioClient';
 export { WhatsappTypes };
 
+/* WhatsApp Business */
+export { default as WhatsappBusinessBot } from './whatsapp-business/WhatsappBusinessBot';
+export { default as WhatsappBusinessConnector } from './whatsapp-business/WhatsappBusinessConnector';
+export { default as WhatsappBusinessContext } from './whatsapp-business/WhatsappBusinessContext';
+export { default as WhatsappBusinessEvent } from './whatsapp-business/WhatsappBusinessEvent';
+export { WhatsappBusinessTypes };
+
 /* LINE */
 export { default as LineBot } from './line/LineBot';
 export { default as LineConnector } from './line/LineConnector';
@@ -92,6 +100,9 @@ export { ViberTypes };
 
 /* Types */
 export * from './types';
+
+/* Helpers */
+export * from './helpers';
 
 /**
  * Private Exports (unstable)
