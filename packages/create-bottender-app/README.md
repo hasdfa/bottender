@@ -36,13 +36,13 @@ npm init bottender-app my-app
 
 _`npm init <initializer>` is available in npm 6+_
 
-### Yarn
+### pnpm
 
 ```sh
 pnpm create bottender-app my-app
 ```
 
-_`pnpm create` is available in Yarn 0.25+_
+_`pnpm create` is available in pnpm 6+_
 
 It will create a directory called `my-app` inside the current folder.<br>
 Inside that directory, it will generate the initial project structure and install the transitive dependencies:
