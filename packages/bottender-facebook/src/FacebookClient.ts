@@ -76,7 +76,7 @@ export default class FacebookClient extends MessengerClient {
   ): Promise<
     Pick<
       Types.Comment,
-      Types.CamelCaseUnion<Types.CommentKeyMap, typeof fields[number]>
+      Types.CamelCaseUnion<Types.CommentKeyMap, (typeof fields)[number]>
     >
   > {
     const conjunctFields = Array.isArray(fields) ? fields.join(',') : fields;
@@ -85,7 +85,7 @@ export default class FacebookClient extends MessengerClient {
       .get<
         Pick<
           Types.Comment,
-          Types.CamelCaseUnion<Types.CommentKeyMap, typeof fields[number]>
+          Types.CamelCaseUnion<Types.CommentKeyMap, (typeof fields)[number]>
         >
       >(`/${commentId}`, {
         params: {
@@ -120,7 +120,7 @@ export default class FacebookClient extends MessengerClient {
     Types.PagingData<
       Pick<
         Types.Comment,
-        Types.CamelCaseUnion<Types.CommentKeyMap, typeof fields[number]>
+        Types.CamelCaseUnion<Types.CommentKeyMap, (typeof fields)[number]>
       >[]
     > &
       (U extends true
@@ -140,7 +140,7 @@ export default class FacebookClient extends MessengerClient {
         Types.PagingData<
           Pick<
             Types.Comment,
-            Types.CamelCaseUnion<Types.CommentKeyMap, typeof fields[number]>
+            Types.CamelCaseUnion<Types.CommentKeyMap, (typeof fields)[number]>
           >[]
         > &
           (U extends true
