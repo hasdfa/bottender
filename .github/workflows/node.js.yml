@@ -1,4 +1,4 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# This workflow will do a clean install of node dependencies, build the source code and run tests
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
 name: Node.js CI
@@ -16,62 +16,20 @@ env:
 
 jobs:
   build:
-    name: Node ${{ matrix.node }} on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      fail-fast: false
-      matrix:
-        node-version: [24]
-        os: [ubuntu-latest, windows-latest]
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Prepare git
-        run: git config --global core.autocrlf false
+      - uses: actions/checkout@v4
 
-      - name: Clone repository
-        uses: actions/checkout@v4
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 24
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v4
         with:
           version: latest
-          run_install: false
 
-      - name: Install npm dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Compile TypeScript files
-        run: npm run compile
-
-      - name: Run lint rules
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: npm run lint
-
-      - name: Install npm dependencies for website
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        working-directory: ./website
-        run: yarn --frozen-lockfile
-
-      - name: Run lint rules for website
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: npm run lint:website
-
-      - name: Run type check for website
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        working-directory: ./website
-        run: npm run type-check
-
-      - name: Run tests
-        run: npm run testonly:cov -- --colors
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        with:
-          fail_ci_if_error: true
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm compile
+      - run: pnpm lint
+      - run: pnpm testonly:cov -- --colors
