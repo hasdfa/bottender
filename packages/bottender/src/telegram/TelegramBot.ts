@@ -14,7 +14,8 @@ export default class TelegramBot extends Bot<
   TelegramRequestBody,
   TelegramClient,
   TelegramEvent,
-  TelegramContext
+  TelegramContext,
+  'telegram'
 > {
   _offset: number | null;
 

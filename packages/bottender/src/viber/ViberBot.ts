@@ -12,7 +12,8 @@ export default class ViberBot extends Bot<
   ViberRequestBody,
   ViberClient,
   ViberEvent,
-  ViberContext
+  ViberContext,
+  'viber'
 > {
   constructor({
     sessionStore,

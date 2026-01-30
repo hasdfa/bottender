@@ -19,7 +19,7 @@ type ConstructorOptions = {
 };
 
 export default class ConsoleConnector
-  implements Connector<ConsoleRequestBody, ConsoleClient>
+  implements Connector<ConsoleRequestBody, ConsoleClient, string>
 {
   _client: ConsoleClient;
 

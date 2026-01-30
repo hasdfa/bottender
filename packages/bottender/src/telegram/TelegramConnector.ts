@@ -31,7 +31,7 @@ export type TelegramConnectorOptions =
   | ConnectorOptionsWithClient;
 
 export default class TelegramConnector
-  implements Connector<TelegramRequestBody, TelegramClient>
+  implements Connector<TelegramRequestBody, TelegramClient, 'telegram'>
 {
   _client: TelegramClient;
 

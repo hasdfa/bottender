@@ -15,6 +15,7 @@ export type ServerOptions = {
   config?: BottenderConfig | undefined;
   Entry?: Action<Context, any> | Builder<Context>;
   ErrorEntry?: Action<Context, any> | Builder<Context>;
+  sendResponse?: (res: ServerResponse, response: any) => void;
 };
 
 class Server {
@@ -41,6 +42,11 @@ class Server {
 
   private sendResponse(res: ServerResponse, response: any): void {
     if (response) {
+      if (this.options.sendResponse) {
+        this.options.sendResponse(res, response);
+        return;
+      }
+
       Object.entries(response.headers || {}).forEach(([key, value]) => {
         res.setHeader(key, value as string);
       });
@@ -53,7 +59,7 @@ class Server {
         res.setHeader('Content-Type', 'application/json; charset=utf-8');
         res.end(JSON.stringify(response.body));
       } else {
-        res.end(response.body || '');
+        res.end(response.body?.toString() || '');
       }
     } else {
       res.statusCode = 200;

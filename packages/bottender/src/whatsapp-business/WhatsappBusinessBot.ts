@@ -1,27 +1,28 @@
 import Bot, { OnRequest } from '../bot/Bot';
 import SessionStore from '../session/SessionStore';
 
-import TwilioClient from './TwilioClient';
+import MetaClient from './MetaClient';
 import WhatsappConnector, {
-  WhatsappConnectorOptions,
-} from './WhatsappConnector';
-import WhatsappContext from './WhatsappContext';
-import WhatsappEvent from './WhatsappEvent';
-import { WhatsappRequestBody } from './WhatsappTypes';
+  WhatsappBusinessConnectorOptions,
+} from './WhatsappBusinessConnector';
+import WhatsappContext from './WhatsappBusinessContext';
+import WhatsappEvent from './WhatsappBusinessEvent';
+import { WhatsappRequestBody } from './WhatsappBusinessTypes';
 
 export default class WhatsappBot extends Bot<
+  // @ts-expect-error - Because of union of string literal types
   WhatsappRequestBody,
-  TwilioClient,
+  MetaClient,
   WhatsappEvent,
   WhatsappContext,
-  'whatsapp'
+  'whatsapp-business'
 > {
   constructor({
     sessionStore,
     sync,
     onRequest,
     ...connectorOptions
-  }: WhatsappConnectorOptions & {
+  }: WhatsappBusinessConnectorOptions & {
     sessionStore?: SessionStore;
     sync?: boolean;
     onRequest?: OnRequest;

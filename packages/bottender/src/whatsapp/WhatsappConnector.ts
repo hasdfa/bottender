@@ -44,7 +44,7 @@ function getExpectedTwilioSignature(
 }
 
 export default class WhatsappConnector
-  implements Connector<WhatsappRequestBody, TwilioClient>
+  implements Connector<WhatsappRequestBody, TwilioClient, 'whatsapp'>
 {
   _client: TwilioClient;
 

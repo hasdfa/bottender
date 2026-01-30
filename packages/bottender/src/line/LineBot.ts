@@ -12,7 +12,8 @@ export default class LineBot extends Bot<
   LineRequestBody,
   LineClient,
   LineEvent,
-  LineContext
+  LineContext,
+  'line'
 > {
   constructor({
     sessionStore,

@@ -29,7 +29,7 @@ export type MessengerConnectorOptions =
 
 export default class MessengerConnector
   extends FacebookBaseConnector<MessengerRequestBody, MessengerClient>
-  implements Connector<MessengerRequestBody, MessengerClient>
+  implements Connector<MessengerRequestBody, MessengerClient, 'messenger'>
 {
   _skipLegacyProfile: boolean;
 
@@ -109,13 +109,8 @@ export default class MessengerConnector
     return 'messenger';
   }
 
-  getUniqueSessionKey(
-    bodyOrEvent: MessengerRequestBody | MessengerEvent
-  ): string | null {
-    const rawEvent =
-      bodyOrEvent instanceof MessengerEvent
-        ? bodyOrEvent.rawEvent
-        : this._getRawEventsFromRequest(bodyOrEvent)[0];
+  getUniqueSessionKey(bodyOrEvent: MessengerEvent): string | null {
+    const rawEvent = bodyOrEvent.rawEvent;
     if (
       rawEvent &&
       'message' in rawEvent &&
@@ -132,7 +127,7 @@ export default class MessengerConnector
 
   async updateSession(
     session: Session,
-    bodyOrEvent: MessengerRequestBody | MessengerEvent
+    bodyOrEvent: MessengerEvent
   ): Promise<void> {
     if (!session.user || this._profilePicExpired(session.user)) {
       const senderId = this.getUniqueSessionKey(bodyOrEvent);
