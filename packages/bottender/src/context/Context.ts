@@ -102,7 +102,7 @@ export default abstract class Context<
    * The event instance.
    *
    */
-  get event(): Record<string, any> {
+  get event(): E {
     return this._event;
   }
 

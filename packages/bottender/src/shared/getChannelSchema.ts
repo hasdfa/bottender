@@ -98,13 +98,24 @@ const whatsappSchema = Joi.object().keys({
   authToken: Joi.string().required(),
 });
 
+const whatsappBusinessSchema = Joi.object().keys({
+  enabled: Joi.boolean(),
+  path: Joi.string(),
+  phoneNumberId: Joi.string().required(),
+  accessToken: Joi.string().required(),
+  verifyToken: Joi.string(),
+});
+
+const channelSchema = {
+  messenger: messengerSchema,
+  line: lineSchema,
+  telegram: telegramSchema,
+  slack: slackSchema,
+  viber: viberSchema,
+  whatsapp: whatsappSchema,
+  'whatsapp-business': whatsappBusinessSchema,
+};
+
 export default function getChannelSchema(channel: Channel): Schema {
-  return {
-    messenger: messengerSchema,
-    line: lineSchema,
-    telegram: telegramSchema,
-    slack: slackSchema,
-    viber: viberSchema,
-    whatsapp: whatsappSchema,
-  }[channel];
+  return channelSchema[channel];
 }

@@ -6,14 +6,24 @@ import Session from '../session/Session';
 import { Event } from '../context/Event';
 import { RequestContext } from '../types';
 
-export interface Connector<B, C> {
+type PlatformWithBodyArg = 'telegram' | 'slack' | 'viber' | 'whatsapp';
+
+export interface Connector<
+  B,
+  C,
+  P extends string = string,
+  Ev extends Event<any> = Event<any>
+> {
   client?: C;
-  platform: string;
+  platform: P;
   getUniqueSessionKey(
-    bodyOrEvent: B | Event<any>,
+    bodyOrEvent: P extends PlatformWithBodyArg ? B : Ev,
     requestContext?: RequestContext
   ): string | null;
-  updateSession(session: Session, bodyOrEvent: B | Event<any>): Promise<void>;
+  updateSession(
+    session: Session,
+    bodyOrEvent: P extends PlatformWithBodyArg ? B : Ev
+  ): Promise<void>;
   mapRequestToEvents(body: B): Event<any>[];
   createContext(params: {
     event: Event<any>;

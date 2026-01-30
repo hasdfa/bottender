@@ -5,10 +5,11 @@ import axios, { AxiosInstance } from 'axios';
 import get from 'lodash/get';
 import {
   OnRequestFunction,
-  camelcaseKeys,
   createRequestInterceptor,
   pascalcaseKeys,
 } from 'messaging-api-common';
+
+import { camelcaseKeys } from '../utils';
 
 type ClientConfig = {
   accountSid: string;
