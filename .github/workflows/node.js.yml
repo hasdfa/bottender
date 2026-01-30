@@ -1,15 +1,9 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Node.js CI
+name: CI
 
 on:
   push:
-    branches:
-      - "**"
+    branches: [master]
   pull_request:
-    branches:
-      - "**"
 
 env:
   CI: true
@@ -26,8 +20,6 @@ jobs:
           node-version: 24
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: latest
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm compile
