@@ -13,16 +13,16 @@
     "clean": "git clean -dfqX -- ./node_modules **/{dist,node_modules}/ ./packages/*/tsconfig*tsbuildinfo",
     "compile": "tsc --build tsconfig.build.json",
     "compile:clean": "tsc --build tsconfig.build.json --clean",
-    "postinstall": "yarn compile",
+    "postinstall": "pnpm compile",
     "lint": "eslint packages examples --ext=js,ts",
-    "lint:fix": "yarn lint:fix:md && yarn lint --fix",
+    "lint:fix": "pnpm lint:fix:md && pnpm lint --fix",
     "lint:fix:md": "prettier --write **/*.md",
     "lint:staged": "lint-staged",
     "lint:website": "eslint website --ext=js,ts,tsx",
     "prepare": "husky install",
+    "prepublishOnly": "pnpm clean && pnpm install && pnpm test",
     "publish": "lerna publish",
-    "prepublishOnly": "yarn clean && yarn && yarn test",
-    "test": "yarn compile && yarn lint && yarn testonly",
+    "test": "pnpm compile && pnpm lint && pnpm testonly",
     "testonly": "jest",
     "testonly:cov": "jest --coverage",
     "testonly:watch": "jest --watch",
@@ -31,10 +31,15 @@
   "workspaces": [
     "packages/*"
   ],
-  "dependencies": {},
   "devDependencies": {
+    "@types/body-parser": "1.19.0",
+    "@types/express-serve-static-core": "4.17.13",
+    "@types/invariant": "2.2.35",
     "@types/jest": "^27.0.2",
+    "@types/lodash": "4.14.168",
+    "@types/node": "14.14.31",
     "@types/prettier": "^2.4.1",
+    "@types/warning": "3.0.0",
     "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.32.0",
     "axios-mock-adapter": "^1.20.0",
@@ -72,5 +77,19 @@
   },
   "engines": {
     "node": ">=8"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/node": "14.14.31",
+      "@types/express-serve-static-core": "4.17.13",
+      "@types/koa": "2.11.6",
+      "@types/lodash": "4.14.168",
+      "@types/ms": "0.7.31",
+      "map-obj": "3.0.0"
+    },
+    "onlyBuiltDependencies": [
+      "ngrok",
+      "protobufjs"
+    ]
   }
 }

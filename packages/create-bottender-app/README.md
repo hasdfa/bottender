@@ -39,10 +39,10 @@ _`npm init <initializer>` is available in npm 6+_
 ### Yarn
 
 ```sh
-yarn create bottender-app my-app
+pnpm create bottender-app my-app
 ```
 
-_`yarn create` is available in Yarn 0.25+_
+_`pnpm create` is available in Yarn 0.25+_
 
 It will create a directory called `my-app` inside the current folder.<br>
 Inside that directory, it will generate the initial project structure and install the transitive dependencies:
@@ -70,7 +70,7 @@ cd my-app
 
 Inside the newly created project, you can run some built-in commands:
 
-### `npm start` or `yarn start`
+### `npm start` or `pnpm start`
 
 Runs the app in production mode.<br>
 By default, server runs on [http://localhost:5000](http://localhost:5000).
@@ -79,10 +79,10 @@ To run in [Console Mode](https://bottender.js.org/docs/the-basics-console-mode),
 
 ```sh
 npm start -- --console
-yarn start --console
+pnpm start --console
 ```
 
-### `npm run dev` or `yarn dev`
+### `npm run dev` or `pnpm dev`
 
 Runs the app in development mode.<br>
 The bot will automatically reload if you make changes to the code.<br>
@@ -92,14 +92,14 @@ To run in [Console Mode](https://bottender.js.org/docs/the-basics-console-mode),
 
 ```sh
 npm run dev -- --console
-yarn dev --console
+pnpm dev --console
 ```
 
-### `npm run lint` or `yarn lint`
+### `npm run lint` or `pnpm lint`
 
 Runs the linter rules using [Eslint](https://eslint.org/).
 
-### `npm test` or `yarn test`
+### `npm test` or `pnpm test`
 
 Runs the test cases using [Jest](https://jestjs.io/).
 

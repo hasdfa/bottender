@@ -133,13 +133,13 @@ Install the dependencies:
 
 ```sh
 cd bottender
-yarn
+pnpm install
 ```
 
 Make sure the tests pass (including ESLint, TypeScript checks and Jest tests):
 
 ```sh
-yarn test
+pnpm test
 ```
 
 Make your changes and tests, and make sure the tests pass.
@@ -150,7 +150,7 @@ You can use Gitpod(a free online VS Code-like) for contributing. With a single c
 
 - clone the bottender repo.
 - install the dependencies.
-- run `yarn run start`.
+- run `pnpm start`.
 
 So that you can start straight away.
 
