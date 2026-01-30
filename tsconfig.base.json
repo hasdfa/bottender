@@ -11,6 +11,7 @@
     "declarationMap": true,
     "removeComments": true,
     "strict": true,
+    "useUnknownInCatchVariables": false,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
