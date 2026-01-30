@@ -232,31 +232,36 @@ describe('#client', () => {
 describe('#getUniqueSessionKey', () => {
   it('extract correct sender id', () => {
     const { connector } = setup();
-    const senderId = connector.getUniqueSessionKey(request);
+    const event = new MessengerEvent(request.entry[0].messaging[0]);
+    const senderId = connector.getUniqueSessionKey(event);
     expect(senderId).toBe('1412611362105802');
   });
 
   it('return recipient id when request is an echo event', () => {
     const { connector } = setup();
-    const senderId = connector.getUniqueSessionKey(echoRequest);
+    const event = new MessengerEvent(echoRequest.entry[0].messaging[0]);
+    const senderId = connector.getUniqueSessionKey(event);
     expect(senderId).toBe('1244813222196986');
   });
 
   it('extract sender id from first event', () => {
     const { connector } = setup();
-    const senderId = connector.getUniqueSessionKey(batchRequest);
+    const event = new MessengerEvent(batchRequest.entry[0].messaging[0]);
+    const senderId = connector.getUniqueSessionKey(event);
     expect(senderId).toBe('1412611362105802');
   });
 
   it('return null if is not first event or echo event', () => {
     const { connector } = setup();
-    const senderId = connector.getUniqueSessionKey({});
+    const event = new MessengerEvent({} as any);
+    const senderId = connector.getUniqueSessionKey(event);
     expect(senderId).toBe(null);
   });
 
   it('return null if is webhook test event or other null rawEvent requests', () => {
     const { connector } = setup();
-    const senderId = connector.getUniqueSessionKey(webhookTestRequest);
+    const event = new MessengerEvent({} as any);
+    const senderId = connector.getUniqueSessionKey(event);
     expect(senderId).toBe(null);
   });
 

@@ -110,7 +110,10 @@ export default class MessengerConnector
   }
 
   getUniqueSessionKey(bodyOrEvent: MessengerEvent): string | null {
-    const rawEvent = bodyOrEvent.rawEvent;
+    const rawEvent =
+      bodyOrEvent instanceof MessengerEvent
+        ? bodyOrEvent.rawEvent
+        : this._getRawEventsFromRequest(bodyOrEvent as any)[0];
     if (
       rawEvent &&
       'message' in rawEvent &&
