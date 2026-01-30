@@ -24,4 +24,4 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm compile
       - run: pnpm lint
-      - run: pnpm testonly:cov -- --colors
+      - run: pnpm testonly:cov
