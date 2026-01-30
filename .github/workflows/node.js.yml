@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [12, 14, 16]
+        node-version: [18, 20, 22]
         os: [ubuntu-latest, windows-latest]
 
     steps:
@@ -30,10 +30,10 @@ jobs:
         run: git config --global core.autocrlf false
 
       - name: Clone repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -50,20 +50,20 @@ jobs:
         run: npm run compile
 
       - name: Run lint rules
-        if: ${{ matrix.os == 'ubuntu-latest' && matrix.node-version == 12 }}
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.node-version == 18 }}
         run: npm run lint
 
       - name: Install npm dependencies for website
-        if: ${{ matrix.os == 'ubuntu-latest' && matrix.node-version == 14 }}
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.node-version == 20 }}
         working-directory: ./website
         run: yarn --frozen-lockfile
 
       - name: Run lint rules for website
-        if: ${{ matrix.os == 'ubuntu-latest' && matrix.node-version == 14 }}
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.node-version == 20 }}
         run: npm run lint:website
 
       - name: Run type check for website
-        if: ${{ matrix.os == 'ubuntu-latest' && matrix.node-version == 14 }}
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.node-version == 20 }}
         working-directory: ./website
         run: npm run type-check
 
@@ -71,7 +71,7 @@ jobs:
         run: npm run testonly:cov -- --colors
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        if: ${{ matrix.os == 'ubuntu-latest' && matrix.node-version == 12 }}
+        uses: codecov/codecov-action@v4
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.node-version == 18 }}
         with:
           fail_ci_if_error: true
