@@ -240,7 +240,7 @@ export default class FacebookContext extends Context<
     fields = ['id' as T, 'message' as T, 'created_time' as T],
   }: Types.GetCommentOptions<T> = {}): Promise<Pick<
     Types.Comment,
-    Types.CamelCaseUnion<Types.CommentKeyMap, typeof fields[number]>
+    Types.CamelCaseUnion<Types.CommentKeyMap, (typeof fields)[number]>
   > | null> {
     const commentId = (this._event.rawEvent.value as Types.FeedComment)
       .commentId;
@@ -254,7 +254,7 @@ export default class FacebookContext extends Context<
       return this._batchQueue.push<
         Pick<
           Types.Comment,
-          Types.CamelCaseUnion<Types.CommentKeyMap, typeof fields[number]>
+          Types.CamelCaseUnion<Types.CommentKeyMap, (typeof fields)[number]>
         >
       >(
         FacebookBatch.getComment(commentId, {

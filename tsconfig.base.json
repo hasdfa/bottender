@@ -2,8 +2,6 @@
   "compilerOptions": {
     "composite": true,
     "skipLibCheck": true,
-    "noStrictGenericChecks": true,
-    "useUnknownInCatchVariables": false,
     "target": "es2016",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -13,6 +11,7 @@
     "declarationMap": true,
     "removeComments": true,
     "strict": true,
+    "useUnknownInCatchVariables": false,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,

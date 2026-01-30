@@ -20,11 +20,7 @@ const pkg = JSON.parse(
 
 // These files should be allowed to remain on a failed install,
 // but then silently removed during the next create.
-const errorLogFilePatterns = [
-  'npm-debug.log',
-  'yarn-error.log',
-  'yarn-debug.log',
-];
+const errorLogFilePatterns = ['npm-debug.log', 'pnpm-debug.log'];
 
 let projectName: string;
 
@@ -47,7 +43,7 @@ if (program.info) {
     .run(
       {
         System: ['OS', 'CPU'],
-        Binaries: ['Node', 'npm', 'Yarn'],
+        Binaries: ['Node', 'npm', 'pnpm'],
         Browsers: ['Chrome', 'Edge', 'Internet Explorer', 'Firefox', 'Safari'],
         npmPackages: ['bottender'],
         npmGlobalPackages: ['create-bottender-app'],
@@ -91,9 +87,9 @@ const getQuestions = (): Record<string, any>[] => [
   },
 ];
 
-const shouldUseYarn = (): boolean => {
+const shouldUsePnpm = (): boolean => {
   try {
-    execSync('yarnpkg --version', { stdio: 'ignore' });
+    execSync('pnpm --version', { stdio: 'ignore' });
     return true;
   } catch (e) {
     return false;
@@ -186,22 +182,19 @@ const checkBotName = (botName: string): void => {
 };
 
 const install = (
-  useYarn: boolean,
+  usePnpm: boolean,
   allDependencies: { dependencies: string[]; devDependencies: string[] }
 ): Promise<void> =>
   new Promise((resolve, reject): void => {
     let command: string;
     let args: string[] = [];
-    if (useYarn) {
-      command = 'yarnpkg';
-      args = args.concat(
-        ['add', '--exact', '--silent'],
-        allDependencies.dependencies
-      );
+    if (usePnpm) {
+      command = 'pnpm';
+      args = args.concat(['add', '--save-exact'], allDependencies.dependencies);
       spawn.sync(command, args, { stdio: 'inherit' });
       args = [];
       args = args.concat(
-        ['add', '--dev', '--silent'],
+        ['add', '--save-dev', '--save-exact'],
         allDependencies.devDependencies
       );
     } else {
@@ -233,7 +226,7 @@ const install = (
 const run = async (
   root: string,
   name: string,
-  useYarn: boolean,
+  usePnpm: boolean,
   useTypescript: boolean,
   platforms: Platform[],
   session: Session
@@ -262,7 +255,7 @@ const run = async (
     print('Installing packages... This might take a couple of minutes.');
     print('');
 
-    await install(useYarn, allDependencies);
+    await install(usePnpm, allDependencies);
 
     const botConfig = generateConfig(session, platforms);
     fs.writeFileSync(path.join(root, 'bottender.config.js'), botConfig);
@@ -297,9 +290,8 @@ const run = async (
       'bottender.config.js',
       'package.json',
       'npm-debug.log',
-      'yarn-error.log',
-      'yarn-debug.log',
-      'yarn.lock',
+      'pnpm-debug.log',
+      'pnpm-lock.yaml',
       'node_modules',
     ];
     const currentFiles = fs.readdirSync(path.join(root));
@@ -328,7 +320,7 @@ const run = async (
 const createBot = async (
   name: string,
   root: string,
-  useYarn: boolean,
+  usePnpm: boolean,
   useTypescript: boolean,
   platforms: Platform[],
   session: Session
@@ -362,7 +354,7 @@ const createBot = async (
 
   process.chdir(root);
 
-  await run(root, name, useYarn, useTypescript, platforms, session);
+  await run(root, name, usePnpm, useTypescript, platforms, session);
 };
 
 const init = async (): Promise<void> => {
@@ -381,19 +373,19 @@ const init = async (): Promise<void> => {
       return process.exit(1);
     }
 
-    const useYarn = program.useNpm ? false : shouldUseYarn();
+    const usePnpm = program.useNpm ? false : shouldUsePnpm();
     const root = path.resolve(name);
 
     await createBot(
       name,
       root,
-      useYarn,
+      usePnpm,
       program.typescript,
       answer.platforms,
       answer.session
     );
 
-    const command = useYarn ? 'yarn' : 'npm run';
+    const command = usePnpm ? 'pnpm' : 'npm run';
 
     print('Success!');
     print(`Created ${name} at ${root}`);

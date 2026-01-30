@@ -32,7 +32,7 @@ To run in [Console Mode](https://bottender.js.org/docs/the-basics-console-mode),
 
 ```sh
 npm run dev -- --console
-yarn dev --console
+pnpm dev --console
 ```
 
 ### `npm run build`
@@ -48,7 +48,7 @@ To run in [Console Mode](https://bottender.js.org/docs/the-basics-console-mode),
 
 ```sh
 npm start -- --console
-yarn start --console
+pnpm start --console
 ```
 
 ### `npm run lint`

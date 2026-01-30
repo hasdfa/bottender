@@ -166,7 +166,8 @@ export default class LineConnector
     event: LineEvent,
     requestContext?: RequestContext
   ): string {
-    const rawEvent = event.rawEvent;
+    const rawEvent =
+      event instanceof LineEvent ? event.rawEvent : (event as any).events?.[0];
 
     let prefix = '';
     if (this._getSessionKeyPrefix) {
@@ -190,7 +191,8 @@ export default class LineConnector
   }
 
   async updateSession(session: Session, event: LineEvent): Promise<void> {
-    const rawEvent = event.rawEvent;
+    const rawEvent =
+      event instanceof LineEvent ? event.rawEvent : (event as any).events?.[0];
     const { source } = rawEvent;
 
     if (!session.type) {
