@@ -12,7 +12,6 @@
     { "path": "./packages/bottender-handlers" },
     { "path": "./packages/bottender-luis" },
     { "path": "./packages/bottender-qna-maker" },
-    { "path": "./packages/bottender-rasa" },
-    { "path": "./packages/create-bottender-app" }
+    { "path": "./packages/bottender-rasa" }
   ]
 }

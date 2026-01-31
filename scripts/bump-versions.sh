@@ -36,7 +36,6 @@ PACKAGES=(
     "packages/bottender-luis/package.json"
     "packages/bottender-qna-maker/package.json"
     "packages/bottender-rasa/package.json"
-    "packages/create-bottender-app/package.json"
 )
 
 for pkg in "${PACKAGES[@]}"; do
