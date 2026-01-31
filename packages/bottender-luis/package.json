@@ -1,5 +1,5 @@
 {
-  "name": "@bottender/luis",
+  "name": "@vraksha/bottender-luis",
   "version": "1.5.5",
   "description": "LUIS integration for Bottender.",
   "license": "MIT",
@@ -18,10 +18,10 @@
     "invariant": "^2.2.4"
   },
   "peerDependencies": {
-    "bottender": ">= 1.2.0-0"
+    "@vraksha/bottender": ">= 1.2.0-0"
   },
   "devDependencies": {
-    "bottender": "^1.5.5"
+    "@vraksha/bottender": "workspace:*"
   },
   "keywords": [
     "bot",
@@ -32,5 +32,8 @@
     "messaging",
     "nlu",
     "understanding"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

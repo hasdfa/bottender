@@ -1,4 +1,4 @@
-# @bottender/rasa
+# @vraksha/bottender-rasa
 
 [Rasa NLU](https://rasa.com/docs/rasa/nlu/about/) integration for Bottender.
 
@@ -7,20 +7,20 @@
 You can install it with npm:
 
 ```sh
-npm install @bottender/rasa
+npm install @vraksha/bottender-rasa
 ```
 
 or Yarn:
 
 ```sh
-yarn add @bottender/rasa
+yarn add @vraksha/bottender-rasa
 ```
 
 ## Usage
 
 ```js
 const { chain } = require('bottender');
-const rasa = require('@bottender/rasa');
+const rasa = require('@vraksha/bottender-rasa');
 
 async function SayHello(context) {
   await context.sendText('Hello!');

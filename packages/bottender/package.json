@@ -23,7 +23,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@bottender/express": "^1.5.1",
+    "@vraksha/bottender-express": "workspace:*",
     "@bottender/jfs": "^0.4.1",
     "@hapi/joi": "^15.1.1",
     "@slack/rtm-api": "^5.0.3",

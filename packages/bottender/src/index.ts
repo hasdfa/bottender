@@ -111,5 +111,5 @@ export * from './helpers';
 /* Plugins */
 export { default as withTyping } from './plugins/withTyping';
 
-export { createServer } from '@bottender/express';
+export { createServer } from '@vraksha/bottender-express';
 export { default as initializeServer } from './initializeServer';

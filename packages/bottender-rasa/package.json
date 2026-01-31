@@ -1,5 +1,5 @@
 {
-  "name": "@bottender/rasa",
+  "name": "@vraksha/bottender-rasa",
   "version": "1.5.5",
   "description": "Rasa NLU integration for Bottender.",
   "license": "MIT",
@@ -19,10 +19,10 @@
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "bottender": ">= 1.2.0-0"
+    "@vraksha/bottender": ">= 1.2.0-0"
   },
   "devDependencies": {
-    "bottender": "^1.5.5"
+    "@vraksha/bottender": "workspace:*"
   },
   "keywords": [
     "bot",
@@ -33,5 +33,8 @@
     "nlu",
     "rasa",
     "understanding"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

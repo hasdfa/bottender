@@ -1,6 +1,6 @@
 import dialogflowSdk, { protos } from '@google-cloud/dialogflow';
 import invariant from 'invariant';
-import { Action, Context, withProps } from 'bottender';
+import { Action, Context, withProps } from '@vraksha/bottender';
 
 function getFulfillments(
   messages?: protos.google.cloud.dialogflow.v2.Intent.IMessage[] | null

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import invariant from 'invariant';
-import { Action, Context, withProps } from 'bottender';
+import { Action, Context, withProps } from '@vraksha/bottender';
 
 import { EntityModel, IntentModel, LuisResult, Sentiment } from './types';
 

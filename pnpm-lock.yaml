@@ -145,9 +145,6 @@ importers:
 
   packages/bottender:
     dependencies:
-      '@bottender/express':
-        specifier: ^1.5.1
-        version: 1.5.1
       '@bottender/jfs':
         specifier: ^0.4.1
         version: 0.4.1
@@ -199,6 +196,9 @@ importers:
       '@types/warning':
         specifier: ^3.0.0
         version: 3.0.0
+      '@vraksha/bottender-express':
+        specifier: workspace:*
+        version: link:../bottender-express
       arg:
         specifier: ^5.0.1
         version: 5.0.2
@@ -353,9 +353,9 @@ importers:
         specifier: ^2.2.4
         version: 2.2.4
     devDependencies:
-      bottender:
-        specifier: ^1.5.5
-        version: 1.5.5
+      '@vraksha/bottender':
+        specifier: workspace:*
+        version: link:../bottender
 
   packages/bottender-express:
     dependencies:
@@ -396,9 +396,9 @@ importers:
         specifier: ^4.0.3
         version: 4.0.3
     devDependencies:
-      bottender:
-        specifier: ^1.5.5
-        version: 1.5.5
+      '@vraksha/bottender':
+        specifier: workspace:*
+        version: link:../bottender
 
   packages/bottender-handlers:
     dependencies:
@@ -424,9 +424,9 @@ importers:
         specifier: ^2.2.4
         version: 2.2.4
     devDependencies:
-      bottender:
-        specifier: ^1.5.5
-        version: 1.5.5
+      '@vraksha/bottender':
+        specifier: workspace:*
+        version: link:../bottender
 
   packages/bottender-qna-maker:
     dependencies:
@@ -437,9 +437,9 @@ importers:
         specifier: ^2.2.4
         version: 2.2.4
     devDependencies:
-      bottender:
-        specifier: ^1.5.5
-        version: 1.5.5
+      '@vraksha/bottender':
+        specifier: workspace:*
+        version: link:../bottender
 
   packages/bottender-rasa:
     dependencies:
@@ -453,9 +453,9 @@ importers:
         specifier: ^4.17.15
         version: 4.17.23
     devDependencies:
-      bottender:
-        specifier: ^1.5.5
-        version: 1.5.5
+      '@vraksha/bottender':
+        specifier: workspace:*
+        version: link:../bottender
 
   packages/create-bottender-app:
     dependencies:
@@ -673,9 +673,6 @@ packages:
 
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
-
-  '@bottender/express@1.5.1':
-    resolution: {integrity: sha512-og2pb6jYzrW9AWGnV6cGLwxFzheYYcnliA0lXJ43kciS5HeYV8Tr09Q+5sJiLWDUE24ndvQxWpfvpEeLmFHNrg==}
 
   '@bottender/jfs@0.4.1':
     resolution: {integrity: sha512-hKl00Kj7HAuubifzUApYgLvgdfpqcM61O6C+KtgoFxEiOBxJ1CYxQb/zFzSnbbV9wvvEGMOgmwTI1lZdldr3cA==}
@@ -1949,11 +1946,6 @@ packages:
   body-parser@1.20.4:
     resolution: {integrity: sha512-ZTgYYLMOXY9qKU/57FAo8F+HA2dGX7bqGc71txDRC1rS4frdFI5R7NhluHxH6M0YItAP0sHB4uqAOcYKxO6uGA==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
-
-  bottender@1.5.5:
-    resolution: {integrity: sha512-suthULDnEVHKFaaOcAqN7zxuTe/jbs51QUNW1arWCrX0pvNNVb6TEtHCJ0ZtmqSL/HzBayZ+GpbRiLURAweLmQ==}
-    engines: {node: '>=8'}
-    hasBin: true
 
   boxen@4.2.0:
     resolution: {integrity: sha512-eB4uT9RGzg2odpER62bBwSLvUeGC+WbRjjyyFhGsKnc8wp/m0+hQsMUvUe3H2V0D5vw0nBdO1hCJoZo5mKeuIQ==}
@@ -6782,17 +6774,6 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
-  '@bottender/express@1.5.1':
-    dependencies:
-      '@types/body-parser': 1.19.0
-      '@types/express': 4.17.2
-      '@types/lodash': 4.14.168
-      body-parser: 1.20.4
-      express: 4.22.1
-      lodash: 4.17.23
-    transitivePeerDependencies:
-      - supports-color
-
   '@bottender/jfs@0.4.1':
     dependencies:
       async: 3.2.6
@@ -8643,84 +8624,6 @@ snapshots:
       unpipe: 1.0.0
     transitivePeerDependencies:
       - supports-color
-
-  bottender@1.5.5:
-    dependencies:
-      '@bottender/express': 1.5.1
-      '@bottender/jfs': 0.4.1
-      '@hapi/joi': 15.1.1
-      '@slack/rtm-api': 5.0.5(debug@4.4.3)
-      '@types/debug': 4.1.12
-      '@types/express': 4.17.2
-      '@types/fs-extra': 8.1.5
-      '@types/hapi__joi': 15.0.4
-      '@types/invariant': 2.2.35
-      '@types/ioredis': 4.28.10
-      '@types/jsonfile': 6.1.4
-      '@types/lodash': 4.14.168
-      '@types/lru-cache': 5.1.1
-      '@types/mongodb': 3.6.20
-      '@types/object.fromentries': 2.0.4
-      '@types/shortid': 0.0.29
-      '@types/update-notifier': 5.1.0
-      '@types/warning': 3.0.0
-      arg: 5.0.2
-      axios: 0.21.4(debug@4.4.3)
-      axios-error: 1.0.4(debug@4.4.3)
-      body-parser: 1.20.4
-      chalk: 2.4.2
-      cli-table3: 0.6.5
-      date-fns: 2.30.0
-      debug: 4.4.3(supports-color@8.1.1)
-      deep-object-diff: 1.1.9
-      delay: 5.0.0
-      dotenv: 10.0.0
-      enquirer: 2.4.1
-      express: 4.22.1
-      facebook-batch: 1.0.6(debug@4.4.3)
-      figures: 3.2.0
-      file-type: 16.5.4
-      fs-extra: 8.1.0
-      hasha: 5.2.2
-      import-fresh: 3.3.1
-      invariant: 2.2.4
-      ioredis: 4.31.0
-      jsonfile: 6.2.0
-      lodash: 4.17.23
-      lru-cache: 6.0.0
-      messaging-api-common: 1.0.4
-      messaging-api-line: 1.0.6(debug@4.4.3)
-      messaging-api-messenger: 1.0.6(debug@4.4.3)
-      messaging-api-slack: 1.0.6(debug@4.4.3)
-      messaging-api-telegram: 1.0.6(debug@4.4.3)
-      messaging-api-viber: 1.0.6(debug@4.4.3)
-      minimist: 1.2.8
-      mongodb: 3.7.4
-      ngrok: 3.4.1
-      nodemon: 2.0.22
-      object.fromentries: 2.0.8
-      p-map: 4.0.0
-      p-props: 4.0.0
-      pascal-case: 3.1.2
-      path-to-regexp: 6.3.0
-      pkg-dir: 5.0.0
-      read-chunk: 3.2.0
-      readline: 1.3.0
-      recursive-readdir: 2.2.3
-      shortid: 2.2.17
-      type-fest: 1.4.0
-      update-notifier: 5.1.0
-      warning: 4.0.3
-    transitivePeerDependencies:
-      - aws4
-      - bson-ext
-      - bufferutil
-      - kerberos
-      - mongodb-client-encryption
-      - mongodb-extjson
-      - snappy
-      - supports-color
-      - utf-8-validate
 
   boxen@4.2.0:
     dependencies:

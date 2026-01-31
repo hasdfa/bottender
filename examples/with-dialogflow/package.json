@@ -4,8 +4,8 @@
     "start": "bottender start"
   },
   "dependencies": {
-    "@bottender/dialogflow": "latest",
-    "bottender": "latest",
+    "@vraksha/bottender-dialogflow": "latest",
+    "@vraksha/bottender": "latest",
     "dialogflow": "^0.14.1"
   }
 }

@@ -1,4 +1,4 @@
-# @bottender/dialogflow
+# @vraksha/bottender-dialogflow
 
 [Dialogflow](https://dialogflow.com/) integration for Bottender.
 
@@ -7,20 +7,20 @@
 You can install it with npm:
 
 ```sh
-npm install @bottender/dialogflow
+npm install @vraksha/bottender-dialogflow
 ```
 
 or Yarn:
 
 ```sh
-yarn add @bottender/dialogflow
+yarn add @vraksha/bottender-dialogflow
 ```
 
 ## Usage
 
 ```js
 const { chain } = require('bottender');
-const dialogflow = require('@bottender/dialogflow');
+const dialogflow = require('@vraksha/bottender-dialogflow');
 
 async function SayHello(context) {
   await context.sendText('Hello!');

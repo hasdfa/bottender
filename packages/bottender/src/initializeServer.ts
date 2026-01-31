@@ -2,7 +2,7 @@ import path from 'path';
 
 import express from 'express';
 import merge from 'lodash/merge';
-import { createServer, registerRoutes } from '@bottender/express';
+import { createServer, registerRoutes } from '@vraksha/bottender-express';
 
 import Bot from './bot/Bot';
 import LineBot from './line/LineBot';

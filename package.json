@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@bottender/workspace",
+  "name": "@vraksha/workspace",
   "description": "A framework for building conversational user interfaces.",
   "license": "MIT",
   "homepage": "https://bottender.js.org/",
@@ -22,6 +22,9 @@
     "prepare": "husky install",
     "prepublishOnly": "pnpm clean && pnpm install && pnpm test",
     "publish": "lerna publish",
+    "publish:vraksha": "./scripts/publish-vraksha.sh",
+    "publish:vraksha:dry": "./scripts/publish-vraksha.sh --dry-run",
+    "bump-versions": "./scripts/bump-versions.sh",
     "test": "pnpm compile && pnpm lint && pnpm testonly",
     "testonly": "jest",
     "testonly:cov": "jest --coverage",

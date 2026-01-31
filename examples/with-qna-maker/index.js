@@ -1,5 +1,5 @@
 const { chain } = require('bottender');
-const qnaMaker = require('@bottender/qna-maker');
+const qnaMaker = require('@vraksha/bottender-qna-maker');
 
 const { RESOURCE_NAME, KNOWLEDGE_BASE_ID, ENDPOINT_KEY } = process.env;
 

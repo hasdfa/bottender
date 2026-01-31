@@ -10,7 +10,7 @@ import {
   MessengerEvent,
   MessengerTypes,
   RequestContext,
-} from 'bottender';
+} from '@vraksha/bottender';
 
 import FacebookClient from './FacebookClient';
 import FacebookContext from './FacebookContext';

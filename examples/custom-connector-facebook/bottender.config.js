@@ -1,4 +1,4 @@
-const { FacebookConnector } = require('@bottender/facebook');
+const { FacebookConnector } = require('@vraksha/bottender-facebook');
 
 module.exports = {
   channels: {

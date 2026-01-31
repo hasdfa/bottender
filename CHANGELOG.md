@@ -1,3 +1,20 @@
+# Migration Notice
+
+As of version 1.6.x, all packages have been renamed from `@bottender/*` to `@vraksha/bottender-*`:
+
+- `bottender` → `@vraksha/bottender`
+- `@bottender/express` → `@vraksha/bottender-express`
+- `@bottender/dialogflow` → `@vraksha/bottender-dialogflow`
+- `@bottender/facebook` → `@vraksha/bottender-facebook`
+- `@bottender/handlers` → `@vraksha/bottender-handlers`
+- `@bottender/luis` → `@vraksha/bottender-luis`
+- `@bottender/qna-maker` → `@vraksha/bottender-qna-maker`
+- `@bottender/rasa` → `@vraksha/bottender-rasa`
+
+Update your `package.json` dependencies and import statements accordingly.
+
+---
+
 # 1.5.5 / 2021-11-10
 
 - [deps] use forked `@bottender/jfs` instead of unmaintained `jfs`.

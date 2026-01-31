@@ -4,7 +4,7 @@
     "start": "bottender start"
   },
   "dependencies": {
-    "@bottender/facebook": "next",
-    "bottender": "next"
+    "@vraksha/bottender-facebook": "next",
+    "@vraksha/bottender": "next"
   }
 }
