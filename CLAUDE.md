@@ -1,14 +1,14 @@
 # Vraksha Bottender
 
-Conversational UI framework (Bottender fork). Monorepo with 8 packages under `@vraksha` scope.
+Conversational UI framework (Bottender fork). Monorepo with 7 packages under `@vraksha` scope.
 
 ## Quick Reference
 
-| Command | Description |
-|---------|-------------|
-| `pnpm compile` | Build TypeScript |
-| `pnpm test` | Lint + tests |
-| `pnpm lint:fix` | Auto-fix lint |
+| Command         | Description      |
+| --------------- | ---------------- |
+| `pnpm compile`  | Build TypeScript |
+| `pnpm test`     | Lint + tests     |
+| `pnpm lint:fix` | Auto-fix lint    |
 
 ## Docs
 

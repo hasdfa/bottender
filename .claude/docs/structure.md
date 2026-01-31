@@ -9,6 +9,5 @@ packages/
 ├── bottender-facebook/     # @vraksha/bottender-facebook - Facebook connector
 ├── bottender-luis/         # @vraksha/bottender-luis - Microsoft LUIS NLU
 ├── bottender-qna-maker/    # @vraksha/bottender-qna-maker - QnA Maker NLU
-├── bottender-rasa/         # @vraksha/bottender-rasa - Rasa NLU
-└── create-bottender-app/   # CLI for scaffolding new projects
+└── bottender-rasa/         # @vraksha/bottender-rasa - Rasa NLU
 ```

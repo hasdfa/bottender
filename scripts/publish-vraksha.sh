@@ -74,7 +74,6 @@ PACKAGES=(
     "packages/bottender-luis"         # Depends on bottender
     "packages/bottender-qna-maker"    # Depends on bottender
     "packages/bottender-rasa"         # Depends on bottender
-    "packages/create-bottender-app"   # Depends on bottender (installed at runtime)
 )
 
 for pkg in "${PACKAGES[@]}"; do
