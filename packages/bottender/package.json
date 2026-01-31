@@ -1,6 +1,6 @@
 {
   "name": "@vraksha/bottender",
-  "version": "1.6.2-beta.3",
+  "version": "1.7.0",
   "description": "A framework for building conversational user interfaces.",
   "license": "MIT",
   "homepage": "https://github.com/hasdfa/bottender",
@@ -23,7 +23,6 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@vraksha/bottender-express": "workspace:*",
     "@bottender/jfs": "^0.4.1",
     "@hapi/joi": "^15.1.1",
     "@slack/rtm-api": "^5.0.3",
@@ -41,6 +40,7 @@
     "@types/shortid": "^0.0.29",
     "@types/update-notifier": "^5.1.0",
     "@types/warning": "^3.0.0",
+    "@vraksha/bottender-express": "workspace:*",
     "arg": "^5.0.1",
     "axios": "^0.21.4",
     "axios-error": "^1.0.4",
