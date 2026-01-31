@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Action, Context, withProps } from 'bottender';
+import { Action, Context, withProps } from '@vraksha/bottender';
 import { get } from 'lodash';
 
 import { Entity, Intent, ParsedResult } from './types';

@@ -4,8 +4,8 @@
     "start": "bottender start"
   },
   "dependencies": {
-    "@bottender/rasa": "latest",
+    "@vraksha/bottender-rasa": "latest",
     "axios": "^0.19.0",
-    "bottender": "latest"
+    "@vraksha/bottender": "latest"
   }
 }

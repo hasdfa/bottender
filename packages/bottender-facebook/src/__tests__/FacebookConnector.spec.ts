@@ -1,4 +1,4 @@
-import { MessengerContext, MessengerEvent } from 'bottender';
+import { MessengerContext, MessengerEvent } from '@vraksha/bottender';
 
 import FacebookClient from '../FacebookClient';
 import FacebookConnector from '../FacebookConnector';

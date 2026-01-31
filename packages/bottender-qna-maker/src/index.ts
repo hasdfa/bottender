@@ -1,6 +1,6 @@
 import axios from 'axios';
 import invariant from 'invariant';
-import { Action, Context } from 'bottender';
+import { Action, Context } from '@vraksha/bottender';
 
 import { MetadataDTO, QnaSearchResultList } from './types';
 

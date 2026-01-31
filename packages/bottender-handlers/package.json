@@ -1,5 +1,5 @@
 {
-  "name": "@bottender/handlers",
+  "name": "@vraksha/bottender-handlers",
   "version": "1.5.1",
   "license": "MIT",
   "homepage": "https://bottender.js.org/",
@@ -17,5 +17,8 @@
     "@types/warning": "^3.0.0",
     "koa-compose": "^4.1.0",
     "warning": "^4.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

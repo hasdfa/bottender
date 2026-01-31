@@ -1,5 +1,5 @@
 const { chain } = require('bottender');
-const rasa = require('@bottender/rasa');
+const rasa = require('@vraksha/bottender-rasa');
 
 async function SayHello(context) {
   await context.sendText('Hello!');

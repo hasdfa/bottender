@@ -1,4 +1,4 @@
-# @bottender/qna-maker
+# @vraksha/bottender-qna-maker
 
 [QnA Maker](https://www.qnamaker.ai/) integration for Bottender.
 
@@ -7,20 +7,20 @@
 You can install it with npm:
 
 ```sh
-npm install @bottender/qna-maker
+npm install @vraksha/bottender-qna-maker
 ```
 
 or Yarn:
 
 ```sh
-yarn add @bottender/qna-maker
+yarn add @vraksha/bottender-qna-maker
 ```
 
 ## Usage
 
 ```js
 const { chain } = require('bottender');
-const qnaMaker = require('@bottender/qna-maker');
+const qnaMaker = require('@vraksha/bottender-qna-maker');
 
 async function Unknown(context) {
   await context.sendText('Sorry, I don’t know what you say.');

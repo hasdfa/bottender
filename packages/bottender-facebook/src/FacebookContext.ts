@@ -6,7 +6,7 @@ import {
   MessengerBatch,
   MessengerTypes,
   RequestContext,
-} from 'bottender';
+} from '@vraksha/bottender';
 import { FacebookBatchQueue } from 'facebook-batch';
 
 import FacebookBatch from './FacebookBatch';

@@ -1,5 +1,5 @@
 const { chain } = require('bottender');
-const luis = require('@bottender/luis');
+const luis = require('@vraksha/bottender-luis');
 
 const { LUIS_APP_KEY, LUIS_APP_ENDPOINT, LUIS_APP_ID } = process.env;
 

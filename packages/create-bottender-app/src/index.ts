@@ -45,7 +45,7 @@ if (program.info) {
         System: ['OS', 'CPU'],
         Binaries: ['Node', 'npm', 'pnpm'],
         Browsers: ['Chrome', 'Edge', 'Internet Explorer', 'Firefox', 'Safari'],
-        npmPackages: ['bottender'],
+        npmPackages: ['@vraksha/bottender'],
         npmGlobalPackages: ['create-bottender-app'],
       },
       {
@@ -233,7 +233,7 @@ const run = async (
 ): Promise<void> => {
   try {
     const allDependencies = {
-      dependencies: ['bottender'],
+      dependencies: ['@vraksha/bottender'],
       devDependencies: [
         'jest',
         'eslint',

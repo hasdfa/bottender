@@ -1,5 +1,5 @@
 const { chain } = require('bottender');
-const dialogflow = require('@bottender/dialogflow');
+const dialogflow = require('@vraksha/bottender-dialogflow');
 
 async function SayHello(context) {
   await context.sendText('Hello!');

@@ -1,5 +1,5 @@
 {
-  "name": "@bottender/facebook",
+  "name": "@vraksha/bottender-facebook",
   "version": "1.5.5",
   "license": "MIT",
   "homepage": "https://bottender.js.org/",
@@ -20,9 +20,12 @@
     "warning": "^4.0.3"
   },
   "peerDependencies": {
-    "bottender": ">= 1.5.1-alpha.4"
+    "@vraksha/bottender": ">= 1.5.1-alpha.4"
   },
   "devDependencies": {
-    "bottender": "^1.5.5"
+    "@vraksha/bottender": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

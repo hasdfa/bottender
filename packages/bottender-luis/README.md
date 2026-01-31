@@ -1,4 +1,4 @@
-# @bottender/luis
+# @vraksha/bottender-luis
 
 [LUIS](https://www.luis.ai/) integration for Bottender.
 
@@ -7,20 +7,20 @@
 You can install it with npm:
 
 ```sh
-npm install @bottender/luis
+npm install @vraksha/bottender-luis
 ```
 
 or Yarn:
 
 ```sh
-yarn add @bottender/luis
+yarn add @vraksha/bottender-luis
 ```
 
 ## Usage
 
 ```js
 const { chain } = require('bottender');
-const luis = require('@bottender/luis');
+const luis = require('@vraksha/bottender-luis');
 
 async function SayHello(context) {
   await context.sendText('Hello!');

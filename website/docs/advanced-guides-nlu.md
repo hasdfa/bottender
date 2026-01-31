@@ -41,20 +41,20 @@ To make the bot development enjoyable, we made a [`bottender/qna-maker`](https:/
 With `npm`:
 
 ```sh
-npm install @bottender/qna-maker
+npm install @vraksha/bottender-qna-maker
 ```
 
 Or with `yarn`:
 
 ```sh
-yarn add @bottender/qna-maker
+yarn add @vraksha/bottender-qna-maker
 ```
 
 In the following sample code, you can see how elegant it is to integrate Bottender with QnA Maker. All you need to do is to fill in your environment variables, and score threshold, then Bottender uses answers from QnA Maker as the response.
 
 ```js
 const { chain } = require('bottender');
-const qnaMaker = require('@bottender/qna-maker');
+const qnaMaker = require('@vraksha/bottender-qna-maker');
 
 async function Unknown(context) {
   await context.sendText('Sorry, I don’t know what you say.');
@@ -108,20 +108,20 @@ To make the bot development enjoyable, we made a [`bottender/dialogflow`](https:
 With `npm`:
 
 ```sh
-npm install @bottender/dialogflow
+npm install @vraksha/bottender-dialogflow
 ```
 
 or with `yarn`:
 
 ```sh
-yarn add @bottender/dialogflow
+yarn add @vraksha/bottender-dialogflow
 ```
 
 In the following sample code, you can see how elegant it is to integrate Bottender with Dialogflow. All you need to do is to fill in your environment variables, write a map between `intents` (e.g., `greeting`) and corresponding `functions` (e.g., `SayHello`).
 
 ```js
 const { chain } = require('bottender');
-const dialogflow = require('@bottender/dialogflow');
+const dialogflow = require('@vraksha/bottender-dialogflow');
 
 async function SayHello(context) {
   await context.sendText('Hello!');
@@ -176,20 +176,20 @@ To make the bot development enjoyable, we made a [`bottender/luis`](https://gith
 With `npm`:
 
 ```sh
-npm install @bottender/luis
+npm install @vraksha/bottender-luis
 ```
 
 Or with `yarn`:
 
 ```sh
-yarn add @bottender/luis
+yarn add @vraksha/bottender-luis
 ```
 
 In the following sample code, you can see how elegant it is to integrate Bottender with LUIS. All you need to do is to fill in your environment variables, and score threshold, then write a map between `intents` (e.g., `greeting`) and corresponding `functions` (e.g., `SayHello`).
 
 ```js
 const { chain } = require('bottender');
-const luis = require('@bottender/luis');
+const luis = require('@vraksha/bottender-luis');
 
 async function SayHello(context) {
   await context.sendText('Hello!');
@@ -248,20 +248,20 @@ To make the bot development enjoyable, we made a [`bottender/rasa`](https://gith
 With `npm`:
 
 ```sh
-npm install @bottender/rasa
+npm install @vraksha/bottender-rasa
 ```
 
 Or with `yarn`:
 
 ```sh
-yarn add @bottender/rasa
+yarn add @vraksha/bottender-rasa
 ```
 
 In the following sample code, you can see how elegant it is to integrate Bottender with Rasa. All you need to do is to set up the origin URL, and confidence threshold, then write a map between `intents` (e.g., `greeting`) and corresponding `functions` (e.g., `SayHello`).
 
 ```js
 const { chain } = require('bottender');
-const rasa = require('@bottender/rasa');
+const rasa = require('@vraksha/bottender-rasa');
 
 async function SayHello(context) {
   await context.sendText('Hello!');

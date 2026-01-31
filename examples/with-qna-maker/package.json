@@ -4,8 +4,8 @@
     "start": "bottender start"
   },
   "dependencies": {
-    "@bottender/qna-maker": "latest",
+    "@vraksha/bottender-qna-maker": "latest",
     "axios": "^0.19.0",
-    "bottender": "latest"
+    "@vraksha/bottender": "latest"
   }
 }
